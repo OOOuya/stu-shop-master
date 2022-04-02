@@ -1,16 +1,33 @@
-import React, {Component} from 'react';
-import {Form, Card, Input, Button} from "antd";
-import {BorderInnerOutlined} from "@ant-design/icons";
+import React from 'react';
+import {Button, Card, Form, Input} from "antd";
 
-function Edit() {
+function Edit(props) {
+    const onFinish = (values) => {
+        console.log('Success:' , values)
+    }
+    const onFinishFailed = (values) => {
+        console.log('Failed', values)
+    }
     return (
         <Card title={"商品编辑"}>
-            <Form>
-                <Form.Item label={"名字"}><Input placeholder={"请输入商品名字"}/></Form.Item>
-                <Form.Item><Button type={"primary"}>保存</Button></Form.Item>
+            <Form
+                name={"商品编辑"}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+            >
+                <Form.Item
+                    name={"名字"}
+                    label={"名字"}
+                    rules={[{required: true, message: "请输入商品名字"}]}
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item>
+                    <Button type={"primary"} htmlType={"submit"}>保存</Button>
+                </Form.Item>
             </Form>
-        </Card>
-    );
+        </Card>);
 }
 
 export default Edit;
