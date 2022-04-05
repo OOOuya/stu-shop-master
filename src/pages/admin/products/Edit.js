@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Card, Form, Input} from "antd";
-
+/*
+* TODO 加入自定义验证
+*  登录界面，登陆进来，直接访问看板页，（index中配置redirect，app.js同样配置看板）
+* */
 function Edit(props) {
     const onFinish = (values) => {
         console.log('Success:' , values)
@@ -23,6 +26,15 @@ function Edit(props) {
                 >
                     <Input/>
                 </Form.Item>
+
+                <Form.Item
+                    name={"价格"}
+                    label={"价格"}
+                    rules={[{required: true, message: "请输入价格"}]}
+                >
+                    <Input/>
+                </Form.Item>
+
                 <Form.Item>
                     <Button type={"primary"} htmlType={"submit"}>保存</Button>
                 </Form.Item>

@@ -1,0 +1,7 @@
+.login-form{
+    position: absolute !important;
+    left: 50%;
+    top: 50%;
+    width: 580px;
+    transform: translate(-50%, -50%);
+}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Popconfirm, Table} from "antd";
+import {listApi} from "../../../services/products";
 
-
+/*
 const dataSource = [{
     id: 1,
     name: '香皂',
@@ -15,9 +16,19 @@ const dataSource = [{
     name: '小浣熊',
     price: 6
 }
-]
+]*/
 
 function List(props) {
+    const [dataSource, setDataSource] = useState([]);
+    useEffect(() => {
+        return () => {
+            listApi().then(res => {
+                console.log(res)
+                setDataSource(res.data)
+            });
+        };
+    }, []);
+    
     const columns = [{
         title: "序号",
         key: 'id',
@@ -51,7 +62,7 @@ function List(props) {
     return (
         <Card title={"商品列表"} extra={
             <Button type={"primary"} size={"small"} onClick={() => props.history.push("/admin/products/edit")}>新增</Button>}>
-            <Table columns={columns} bordered dataSource={dataSource}/>
+            <Table rowKey={"id"} columns={columns} bordered dataSource={dataSource}/>
         </Card>
     );
 }
